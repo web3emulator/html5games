@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ETH-ARCADE</title>
+    <meta name="viewport" content="width=480, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' https://raw.githubusercontent.com">
+
+    <style>
+    @font-face {
+        font-family: 'Arcade Classic';
+        src: url('fonts/arcadeclassic.eot');
+        src: url('fonts/arcadeclassic.eot?#iefix') format('embedded-opentype'),
+             url('fonts/arcadeclassic.woff') format('woff'),
+             url('fonts/arcadeclassic.ttf') format('truetype'),
+             url('fonts/arcadeclassic.svg#arcadeclassic') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border:0px solid #000;
+        width: 800px;
+        height: 800px;
+        margin:3px;
+    }
+
+    .canvas1 {
+        width: 800px;
+        height: 800px;
+        margin:3px;
+    }
+
+    #canvasWrapper {
+        width: 800px;
+        height: 800px;
+    }
+
+    .snake-container {
+        background-color: rgb(39, 39, 39);
+    }
+
+
+
+
+    @media (min-width: 200px) and (max-width: 425px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+            margin-left: -6%;
+            margin-top: -6%;
+            transform: scale(.83, .83);
+
+        }
+
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 400px;
+            height: 400px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:-35px;
+            margin-left: -115px;
+
+            transform: scale(.65,.85);
+    }
+
+        
+    }
+
+    @media (min-width: 426px) and (max-width: 450px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+            margin-left: -4.5%;
+            margin-top: -4.5%;
+            transform: scale(.87, .87);
+
+        }
+
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 425px;
+            height: 425px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:-23px;
+            margin-left: -102px;
+
+            transform: scale(.69,.90);
+    }
+        
+    }
+   
+   
+
+    @media (min-width: 451px) and (max-width: 475px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+             margin-left: -3%;
+            margin-top: -3%;
+            transform: scale(.91, .91);
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 450px;
+            height: 450px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top:-11px;
+            margin-left: -89px;
+
+            transform: scale(.73,.95);
+    }
+    }
+
+
+
+    @media (min-width: 476px) and (max-width: 500px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: -1.5%;
+            margin-top: -1.5%;
+            transform: scale(.96, .96);
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 475px;
+            height: 475px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top: 1px;
+            margin-left: -76px;
+
+            transform: scale(.77,1.0);
+    }
+    }
+
+    @media (min-width: 501px) and (max-width: 525px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: -0%;
+            margin-top: -0%;
+            transform: scale(1, 1);
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 500px;
+            height: 500px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top: 13px;
+            margin-left: -63px;
+
+            transform: scale(.81,1.05);
+    }
+    }
+
+    
+    @media (min-width: 526px) and (max-width: 550px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 1.5%;
+            margin-top: 1.5%;
+            transform: scale(1.05, 1.05);
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 525px;
+            height: 525px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top: 25px;
+            margin-left: -50px;
+
+            transform: scale(.85,1.1);
+    }
+    }
+
+
+    @media (min-width: 551px) and (max-width: 575px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+            margin-left: 3%;
+            margin-top: 3%;
+            transform: scale(1.09, 1.09);
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 550px;
+            height: 550px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top: 37px;
+            margin-left: -37px;
+
+            transform: scale(.89,1.15);
+    }
+    }
+
+    @media (min-width: 576px) and (max-width: 600px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+            margin-left: 4.5%;
+            margin-top: 4.5%;
+            transform: scale(1.13, 1.13);
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 575px;
+            height: 575px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top: 49px;
+            margin-left: -24px;
+
+            transform: scale(.93,1.2);
+    }
+    }
+
+    
+    @media (min-width: 601px) and (max-width: 625px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+            margin-left: 6%;
+            margin-top: 6%;
+            transform: scale(1.17, 1.17);  
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 600px;
+            height: 600px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top: 61px;
+            margin-left: -11px;
+
+            transform: scale(.97,1.25);
+    }
+    }
+
+    @media (min-width: 626px) and (max-width: 650px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+            margin-left: 7.5%;
+            margin-top: 7.5%;
+            transform: scale(1.22, 1.22);  
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 620px;
+            height: 625px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top: 73px;
+            margin-left: 2px;
+
+            transform: scale(1.01,1.3);
+    }
+    }
+
+
+    @media (min-width: 651px) and (max-width: 675px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+            margin-left: 9%;
+            margin-top: 9%;
+            transform: scale(1.26, 1.26);  
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 650px;
+            height: 650px;
+            margin:3px;
+        }
+        #display {
+            display: relative;
+            margin-top: 85px;
+            margin-left: 15px;
+
+            transform: scale(1.05,1.35);
+    }
+    }
+
+
+
+    @media (min-width: 676px) and (max-width: 700px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 12%;
+            margin-top: 12%;
+            transform: scale(1.34, 1.34); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 675px;
+            height: 675px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:100px;
+            margin-left: 30px;
+
+            transform: scale(1.08,1.4);
+        }   
+    }
+
+        @media (min-width: 701px) and (max-width: 725px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 13.5%;
+            margin-top: 13.5%;
+            transform: scale(1.39, 1.39); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width:700px;
+            height: 700px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:112.5px;
+            margin-left: 42.5px;
+
+            transform: scale(1.12,1.47);
+        }   
+    }
+
+        @media (min-width: 726px) and (max-width: 750px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 15%;
+            margin-top: 15%;
+            transform: scale(1.44, 1.44); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 725px;
+            height: 725px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:125px;
+            margin-left: 55px;
+
+            transform: scale(1.16,1.56);
+        }   
+    }
+
+        @media (min-width: 751px) and (max-width: 775px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 16.5%;
+            margin-top: 16.5%;
+            transform: scale(1.49, 1.49); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 750px;
+            height: 750px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:137.5px;
+            margin-left: 67.5px;
+
+            transform: scale(1.20,1.61);
+        }   
+    }
+
+
+            @media (min-width: 776px) and (max-width: 800px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 18%;
+            margin-top: 18%;
+            transform: scale(1.54, 1.54); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width:775px;
+            height: 775px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:150px;
+            margin-left: 80px;
+
+            transform: scale(1.24,1.62);
+        }   
+    }
+
+            @media (min-width: 801px) and (max-width: 825px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 19.5%;
+            margin-top: 19.5%;
+            transform: scale(1.59, 1.59); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 800px;
+            height: 800px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:162.5px;
+            margin-left: 92.5px;
+
+            transform: scale(1.28,1.67);
+        }   
+    }
+    
+            @media (min-width: 826px) and (max-width: 850px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 21%;
+            margin-top: 21%;
+            transform: scale(1.64, 1.64); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 825px;
+            height: 825px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:175px;
+            margin-left: 105px;
+
+            transform: scale(1.32,1.72);
+        }   
+    }
+
+
+    @media (min-width: 851px) and (max-width: 875px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+
+            margin-left: 22.5%;
+            margin-top: 22.5%;
+            transform: scale(1.69, 1.69); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 850px;
+            height: 850px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:187.5px;
+            margin-left: 117.5px;
+
+            transform: scale(1.36,1.77);
+        }   
+    }
+
+
+    @media (min-width: 876px) and (max-width: 2900px) {
+        #startScreen{
+            width: 500px;
+            height: 500px;
+
+            margin-left: 24%;
+            margin-top: 24%;
+            transform: scale(1.74, 1.74); 
+        }
+        .canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border:0px solid #000;
+            width: 875px;
+            height: 875px;
+            margin:3px;
+        }
+
+        #display {
+            display: relative;
+            margin-top:200px;
+            margin-left: 130px;
+
+            transform: scale(1.4,1.82);
+        }   
+    }
+
+
+
+    body {
+        height: 100%;
+        font-family: "Poppins", sans-serif;
+        color: #6e7888;
+    }
+
+    body {
+        background-color: #000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #6e7888;
+        overflow: hidden;
+    }
+
+    .canvas1 {
+        background-color: #000000;
+        margin:3px;
+    }
+
+
+    #canvasBubbleTrouble {
+        position: fixed;
+        background-color: #000000;
+        top: -0px;
+        left: -0px;
+    }
+
+
+
+    #rightArrow {
+        /* transform: scale(2,2) */
+        position: fixed;
+        left: 85%;
+        top: 40%;
+    }
+
+    
+    #leftArrow {
+        /* transform: scale(2,2) */
+        position: fixed;
+        left: 5%;
+        top: 40%;
+    }
+
+    /**************************/
+    /* unique id-based styles */
+    /**************************/
+
+    #breakout {
+      position: relative;
+    }
+
+    #levels {
+        position: absolute;
+            left: 10px;
+              top: 10px;
+            color: #666;
+      line-height: 20px;
+    }
+
+    #levels #next  { position: absolute;            }
+    #levels #prev  { position: absolute; top: 14px; }
+    #levels #label { padding-left: 20px; }
+    #levels #level { font-size: 14pt; padding-left: 5px; font-weight: bold; color: black; }
+
+    #levels img                 { cursor: pointer; }
+    #levels img.disabled        { opacity: 0.3; cursor: default; }
+    #levels img:active          { margin-top: 1px; margin-left: 1px; }
+    #levels img.disabled:active { margin-top: 0; margin-left: 0; }
+
+    #instructions {
+      background: #DDD;
+          border: 2px solid #333;
+          color: #555;
+        padding: 0.5em 1em;
+    white-space: nowrap;
+      text-align: center;
+          width: 18em;
+          margin: 0 auto;
+        position: relative;
+            top: -16em;
+    }
+    #instructions b { color: black; }
+
+    #instructions       .keyboard { display: block; }
+    #instructions       .touch    { display: none;  }
+    #instructions.touch .keyboard { display: none;  }
+    #instructions.touch .touch    { display: block; }
+
+    #controls {
+      position: absolute;
+        bottom: 0.5em;
+          left: 0.5em;
+    }
+    #controls input,
+    #controls label { vertical-align: middle; }
+
+    /********************************/
+    /* re-usable class-based styles */
+    /********************************/
+
+    .unsupported {
+                border: 1px solid yellow;
+                color: black;
+      background-color: #FFFFAD;
+              padding: 2em;
+                margin: 5em;
+              display: inline-block;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    h2 {
+        font-weight: 200;
+        transform: rotate(270deg);
+    }
+
+    .noselect {
+        user-select: none;
+    }
+    #replay:hover {
+        background: #a6aab5;
+        background: #4cffd7;
+        transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #replay svg {
+        margin-right: 8px;
+    }
+    @media (max-width: 600px) {
+        #replay {
+        margin-bottom: 20px;
+        }
+        #replay,
+        h2 {
+        transform: rotate(0deg);
+        }
+        #ui {
+        flex-flow: row wrap;
+        margin-bottom: 20px;
+        }
+        #score {
+        margin-top: 0;
+        margin-left: 20px;
+        }
+        .container {
+        flex-flow: column wrap;
+        }
+    }
+    
+/*     #ui {
+        position: fixed;
+        left: 200px;
+        margin-top: -500px;
+        transform: rotate(90deg);
+    }
+    #score {
+        position: fixed;
+        font-size: 30px;
+        font-weight: 800;
+        left: 350px;
+        transform: rotate(90deg);
+    } */
+
+    .wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+
+
+
+    /* MINESWEEPER CSS */
+
+
+    .minesweepBoard {
+        display: none;
+        flex-wrap: wrap;
+        background-color: #00211f;
+        border-radius: 5px;
+        box-shadow: 0 0 3px 2px #00f3ff, 0 0 5px 2px #00f3ff, 0 0 7px 2px #00f3ff,
+            inset 0 0 7px 3px #ffffff73;
+
+        position: fixed;
+        top: 10%;
+        left: 10%;
+        margin: 0px;
+        transform: scale(1.08, 1.08);
+        }
+
+        .minesweepBoard div {
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #555656;
+        height: 26px;
+        width: 26px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color: #8eadb1;
+        padding: 1px;
+        }
+
+        .checked {
+        background-color: #0095a5 !important;
+        font-weight: bold;
+        }
+
+        .bombCountIs1 {
+        color: #0fe420;
+        }
+
+        .bombCountIs2 {
+        color: yellow;
+        }
+
+        .bombCountIs3 {
+        color: blue;
+        }
+
+        .bombCountIs4 {
+        color: purple;
+        }
+
+        .bombCountIs5 {
+        color: orange;
+        }
+
+        .bombCountIs6 {
+        color: red;
+        }
+
+        .gameOverMinesweep {
+        background-color: #ff000091 !important;
+        }
+
+        #c {
+            position: absolute;
+            top:0px;
+            left:0px;
+        }
+
+
+
+		.hidden {
+			display: none;
+		}
+
+
+		#stage {
+		position: fixed;
+        top:0px;
+        left:0px;
+		}
+
+		.fallback {
+			background: #000;
+			color: #f1f1f2;
+			font-family: Tahoma, Arial, Sans;
+			text-align: center;
+		}
+
+		.fallback p {
+			display: block;
+		}
+
+		.fallback a {
+			color: #7c51a1;
+			font-weight: bold;
+		}
+
+		.nav {
+			border-bottom: solid 2px #3c3533;
+			padding: 5px 10px;
+			overflow: hidden;
+			background: #636467;
+			font-family: MedievalSharp, Tahoma, Arial;
+			font-size: 24px;
+		}
+
+		.nav > ul {
+		float: right;
+			margin: 0;
+			padding: 0;
+
+			overflow: hidden;
+		}
+
+		.nav > ul li {
+			float: left;
+			list-style: none;
+			margin-right: 30px;
+		}
+
+		.nav a {
+			color: #f1f1f2;
+			text-decoration: none;
+			text-shadow: #000 1px 1px 1px;
+			font-weight: bold;
+		}
+
+		.nav a:hover {
+			color: #faa61a;
+		}
+
+		#tip {
+			position: absolute;
+			left: 0;
+			top: 0;
+
+			padding: 5px;
+
+			color: #f1f1f2;
+			font-family: Tahoma, Arial, Sans;
+			font-size: 14px;
+			font-weight: bold;
+			text-align: center;
+			text-shadow: #91661e 1px 1px 2px;
+		}
+
+		#tip_controls {
+			cursor: pointer;
+			float: right;
+			padding-right: 5px;
+		}
+
+		#tip_controls.show {
+			color: #f1f1f2;
+		}
+
+		#tip_controls.hide {
+			color: #6d6e70;
+			text-shadow: #000 1px 1px 2px;
+		}
+
+		.fade-in, .fade-out {
+			-moz-transition: all 1s ease-in-out;
+			-o-transition: all 1s ease-in-out;
+			-webkit-transition: all 1s ease-in-out;
+		}
+
+		.fade-in {
+			opacity: 1;
+		}
+
+		.fade-out {
+			opacity: 0;
+		}
+
+		.full #tip {
+			display: none;
+		}
+
+		#tip span {
+			font-style: italic;
+		}
+
+		#tip a {
+			color: #faa61a;
+			text-decoration: underline;
+		}
+
+		#tip a:hover {
+			text-decoration: none;
+		}
+
+		.ad.leaderboard {
+			margin-top: 10px;
+			text-align: center;
+		}
+
+		/* Clay.io style overrides */
+		body #clay .clay-notification, body #clay .clay-modal-wrapper {
+			border: 2px solid #cca204;
+			padding: 0;
+			font-family: MedievalSharp;
+			background: rgba( 0, 0, 0, 0.8 );
+
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+		}
+
+		body #clay .clay-notification .clay-notification-content a {
+			color: #fff;
+		}
+
+		#clay .clay-content {
+			max-width: 446px;
+		}
+
+		body #clay .clay-modal, body #clay #clay-leaderboard-wrapper-inner {
+			background: transparent;
+		}
+
+		body #clay .clay-notification .clay-notification-header {
+			background: transparent;
+			color: #cca204;
+			font-size: 1.5em;
+		}
+
+		body #clay .clay-notification .clay-notification-content {
+			background: transparent;
+			color: #fff;
+		}
+
+		body #clay h2.clay-banner {
+			background: transparent;
+			text-align: center;
+			color: #cca204;
+		}
+
+		body #clay h3.clay-powered-by {
+			background: transparent;
+			border-bottom: 1px solid #fff;
+		}
+
+		body #clay h2.clay-banner img {
+			display: none;
+		}
+
+		body #clay table tbody tr td, body #clay table tbody tr th, body #clay table thead tr td, body #clay table thead tr th, body #clay table tbody tr.clay-leaderboard-me td, body #clay table tbody tr.clay-leaderboard-me th {
+			color: #fff;
+		}
+
+		body #clay table tbody tr td a, body #clay table tbody tr.clay-leaderboard-me td a {
+			color: #cca204;
+		}
+
+		body #clay #clay-achievements-wrapper-content .clay-achievement-single {
+			color: #fff;
+		}
+
+		body #clay #clay-leaderboard-wrapper .clay-leaderboard-custom-html {
+			color: #fff;
+		}
+
+		body #clay #clay-leaderboard-wrapper .clay-leaderboard-custom-html a {
+			color: #cca204;
+		}
+
+		body #clay .close, #clay .clay-close, body #clay .clay-notification-close {
+			background: none;
+			color: white;
+			text-decoration: none;
+			font-size: 3em;
+			top: 0;
+		}
+		body #clay .clay-notification-close {
+			font-size: 1.5em;
+			top: 0;
+			right: 3px;
+		}
+
+    /*****************************/
+    /* @media query based layout */
+    /*****************************/
+    </style>
+</head>
+<body>
+    
+    <div id="canvasWrapper" class="canvas">
+        <canvas id="background-canvas" class="canvas" width="960" height="1280"></canvas>
+        <canvas id="canvas-frogger" class="canvas" width="960" height="1280"></canvas>
+        <canvas id="canvas" class="canvas"></canvas>
+        <canvas id='atlas' style="display:none"></canvas>
+        <canvas id="canvas1" class="canvas1"  style="display: none"></canvas>
+        <canvas id="canvasBubbleTrouble" class="canvas" width="500" height="500" style="display: none"></canvas>
+        <canvas id="canvasFlappy" class="canvas" width="500" height="500"></canvas>
+        <section class="minesweepMenu"></section>
+        <main class="minesweepBoard" class="canvas"></main>
+        <div id="stage"></div>
+    
+
+    <div id="levels" style='display:none;'>
+        <img id="next" class="disabled" src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/up.png"   title="next level">
+        <img id="prev" class="disabled" src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/down.png" title="previous level">
+        <span id="label">level:</span><span id="level"></span>
+      </div>
+      <div id="controls" style='display:none;'>
+        <input id='sound' type='checkbox' />
+        <label for='sound'>sound</label>
+      </div>
+      <div id="instructions" style='display:none;'>
+        <div class='keyboard'>
+          <b>space</b> to start<br>
+          <b>left/right</b> to move paddle<br>
+          <b>up/down</b> to change level
+        </div>
+        <div class='touch' style='display:none;'>
+          <b>touch here</b> to start<br>
+          <b>drag</b> paddle to move<br>
+        </div>
+      </div>
+
+      <div class="container noselect" id="snake-container" style="display: none">
+        <div class="wrapper">
+          <div id="ui">
+            <h2>
+            </h2>
+            <span id="score"></span>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- background container -->
+    <div
+      id="startScreen"
+      style="
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: url('https://raw.githubusercontent.com/CopeBears/testupload/main/random/resizedbg.png');
+        z-index: 20;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 0px, 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div style="text-align: center;
+                    margin-top: -10px;
+                    position: fixed;
+                    top:3%;
+                    ">
+        <h1 style="color: rgb(228, 171, 48); font-family:'Courier New', Courier, monospace">ETH ARCADE</h1>
+  
+        <!-- button -->
+        <div
+          id="spaceInvaders"
+          style="cursor: pointer; 
+                position: fixed; 
+                top: 15%;
+                left: 24%;
+                display: inline-block; 
+                margin-top: -10px;
+                transform: scale(1.1, .9); 
+                "
+        >
+          <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/galagabutton.png" alt="Start Button" />
+          <span
+            style="
+              position: absolute;
+              color: white;
+              top: 50%;
+              transform: translate(-50%, -70%);
+                font-size: 20px;
+                font-weight: 700;
+              left: 50%;
+              font-family:'Courier New', Courier, monospace;
+            "
+            >invaders</span
+          >
+        </div>
+          
+        <br>
+        <!-- button -->
+        <div
+          id="mario"
+          style="cursor: pointer; 
+                position: fixed; 
+                top: 22%;
+                left: 25%;
+                display: inline-block;
+                transform: scale(1.1, .9);
+                margin-top: 10px;   
+                "
+
+        >
+          <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/mariobutton.png" alt="Start Button" />
+          <span
+            style="
+              position: absolute;
+              color: white;
+              top: 50%;
+              transform: translate(-50%, -70%);
+                font-size: 20px;
+                font-weight: 700;
+              left: 50%;
+              font-family:'Courier New', Courier, monospace;
+            "
+            >jumpman</span
+          >
+
+        </div>
+
+        <br>
+        <!-- button -->
+        <div
+        id="frogger"
+        style="cursor: pointer; 
+                position: fixed; 
+                top: 34%;
+                left: 23%;
+                display: inline-block;
+                transform: scale(1.1, .9);
+                margin-top: 10px;   "
+       
+        >
+        <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/froggerbutton.png" alt="Start Button" />
+        <span
+            style="
+            position: absolute;
+            color: white;
+            top: 50%;
+            transform: translate(-50%, -70%);
+            font-size: 20px;
+            font-weight: 700;
+            left: 50%;
+            font-family:'Courier New', Courier, monospace;
+            "
+            >frogger</span
+        >
+        </div>
+
+        <br>
+         <!-- button -->
+         <div
+         id="brickbreak"
+         style="cursor: pointer; 
+                position: fixed; 
+                top: 46%;
+                left: 26%;
+                display: inline-block;
+                transform: scale(1.12, .95);
+                margin-top: 10px;   
+                "
+    
+         >
+         <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/brickbreakerbutton.png" alt="Start Button" />
+         <span
+             style="
+             position: absolute;
+             color: white;
+             top: 50%;
+             transform: translate(-50%, -70%);
+            font-size: 18px;
+            font-weight: 700;
+             left: 50%;
+             font-family:'Courier New', Courier, monospace;
+             "
+             >brickbreak</span
+         >
+         </div>
+
+         <br>
+         <!-- button -->
+         <div
+         id="tetris"
+         style="cursor: pointer; 
+                position: fixed; 
+                top: 58%;
+                left: 24%;
+                display: inline-block;
+                transform: scale(1.1, .9);
+                margin-top: 10px;   
+                "
+         >
+         <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/tetrisbutton.png" alt="Start Button" />
+         <span
+             style="
+             position: absolute;
+             color: white;
+             top: 50%;
+             transform: translate(-50%, -70%);
+            font-size: 20px;
+            font-weight: 700;
+             left: 50%;
+             font-family:'Courier New', Courier, monospace;
+             "
+             >tetris</span
+         >
+         </div>
+
+         <br>
+         <!-- button -->
+         <div
+         id="flappybird"
+         style="cursor: pointer; 
+                position: fixed; 
+                top: 70%;
+                left: 24%;
+                display: inline-block;
+                transform: scale(1.12, .9);
+                margin-top: 10px;   
+                "
+         
+         >
+         <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/flappybirdbutton.png" alt="Start Button" />
+         <span
+             style="
+             position: absolute;
+             color: white;
+             top: 50%;
+             transform: translate(-50%, -70%);
+            font-size: 18px;
+            font-weight: 700;
+             left: 50%;
+             font-family:'Courier New', Courier, monospace;
+             "
+             >lazy bird</span
+         >
+         </div>
+
+
+        <br>
+        <!-- button -->
+        <div
+        id="snake"
+        style="cursor: pointer; 
+                position: fixed; 
+                top: 15%;
+                left: 22%;
+                display: inline-block;
+                transform: scale(1.1, .9);
+                margin-top: -10px; 
+                display: none;  
+                "
+        >
+        <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/snakebutton.png" alt="Start Button" />
+        <span
+            style="
+            position: absolute;
+            color: white;
+            top: 50%;
+            transform: translate(-50%, -70%);
+            font-size: 20px;
+            font-weight: 700;
+            left: 50%;
+            font-family:'Courier New', Courier, monospace;
+            "
+            >snake</span
+        >
+        </div>
+
+        <br>
+        <!-- button -->
+        <div
+        id="pacman"
+        style="cursor: pointer; 
+                position: fixed; 
+                top: 26%;
+                left: 26%; 
+                display: inline-block;
+                transform: scale(1.1, .9);
+                margin-top: -10px;
+                display: none;   
+                "
+        >
+        <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/pacmanbutton.png" alt="Start Button" />
+        <span
+            style="
+            position: absolute;
+            color: white;
+            top: 50%;
+            transform: translate(-50%, -70%);
+            font-size: 20px;
+            font-weight: 700;
+            font-size: 20px;
+            font-weight: 700;
+            left: 50%;
+            font-family:'Courier New', Courier, monospace;
+            "
+            >pacman</span
+        >
+        </div>
+
+        
+        <br>
+        <!-- button -->
+        <div
+        id="minesweeper"
+        style="cursor: pointer; 
+                position: fixed; 
+                top: 38%;
+                left: 25%;
+                display: inline-block;
+                transform: scale(1.1, .9);
+                margin-top: -10px;
+                display: none;    
+                "
+
+        >
+        <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/minesweepbutton.png" alt="Start Button" />
+        <span
+            style="
+            position: absolute;
+            color: white;
+            top: 50%;
+            transform: translate(-50%, -70%);
+            font-size: 18px;
+            font-weight: 700;
+            left: 50%;
+            font-family:'Courier New', Courier, monospace;
+            "
+            >minesweep</span
+        >
+        </div>
+          <br>
+          
+        <!-- button -->
+        <div
+        id="bubbletrouble"
+        style="cursor: pointer; 
+                position: fixed; 
+                top: 50%;
+                left: 25%; 
+                display: inline-block;
+                transform: scale(1.1, .9);
+                margin-top: -10px;
+                display: none; 
+                "
+
+        >
+        <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/bubbletroublebutton.png" alt="Start Button" />
+        <span
+            style="
+            position: absolute;
+            color: white;
+            top: 50%;
+            transform: translate(-54%, -70%);
+       font-size: 20px;
+       font-weight: 700;
+            font-size: 18px;
+            font-weight: 700;
+            left: 50%;
+            font-family:'Courier New', Courier, monospace;
+            "
+            >bubblebounce</span
+        >
+        </div>
+
+         <!-- button -->
+        <div
+        id="arenaOnslaught"
+        style="cursor: pointer; 
+                position: fixed; 
+                top: 58%;
+                left: 25%; 
+                display: inline-block;
+                transform: scale(1.1, .9);
+                margin-top: 10px;   
+                display: none; 
+                "
+    
+        >
+        <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/onslaughtbutton.png" alt="Start Button" />
+        <span
+            style="
+            position: absolute;
+            color: white;
+            top: 50%;
+            transform: translate(-54%, -70%);
+            font-size: 20px;
+            font-weight: 700;
+            font-size: 18px;
+            font-weight: 700;
+            left: 50%;
+            font-family:'Courier New', Courier, monospace;
+            "
+            >Onslaught</span
+        >
+        </div>
+
+
+        <!---- right arrrow -->
+        <div id="rightArrow">
+
+            <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/rightarrow.png" alt="Other Games" />
+        </div>
+
+        <!---- left arrrow -->
+        <div id="leftArrow">
+
+            <img src="https://raw.githubusercontent.com/CopeBears/AtariFiles/main/leftarrow.png" alt="Other Games" />
+        </div>
+            
+      </div>
+    </div>
+
+    </div>
+       
+<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script> -->
+
+
+    <!-- <script src="./jsfile1.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/CopeBears/arcadeDAO_html@main/jsfile2.js"></script>  
+  
+
+</body>
+</html>
